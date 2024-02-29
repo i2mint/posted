@@ -14,7 +14,7 @@ from i2.util import mk_sentinel
 _mk_sentinel = partial(
     mk_sentinel, boolean_value=False, repr_=lambda x: x.__name__, module=__name__
 )
-NoMsg = _mk_sentinel("NoMsg")
+NoMsg = _mk_sentinel('NoMsg')
 
 
 class MsgBrokerBase(ABC):
@@ -22,11 +22,12 @@ class MsgBrokerBase(ABC):
     Base class for message brokers. Subclasses must implement the 'write', 'read',
     'subscribe', and 'unsubscribe' methods.
     """
+
     _config: Mapping[str, Any]
 
     def __init__(self, **config):
         self._config = config
-    
+
     def write(self, message: Any, channel: str):
         """
         Write a message to the channel.
@@ -44,7 +45,7 @@ class MsgBrokerBase(ABC):
         :return: The message read from the channel.
         """
         raise NotImplementedError("The 'read' method must be implemented in subclass.")
-    
+
     def subscribe(self, channel: str, callback: Callable[[Any], None]):
         """
         Subscribe to a channel.
@@ -52,12 +53,16 @@ class MsgBrokerBase(ABC):
         :param channel: The channel to subscribe to.
         :param callback: The callback to call when a message is received on the channel.
         """
-        raise NotImplementedError("The 'subscribe' method must be implemented in subclass.")
-    
+        raise NotImplementedError(
+            "The 'subscribe' method must be implemented in subclass."
+        )
+
     def unsubscribe(self, channel: str):
         """
         Unsubscribe from a channel.
 
         :param channel: The channel to unsubscribe from.
         """
-        raise NotImplementedError("The 'unsubscribe' method must be implemented in subclass.")
+        raise NotImplementedError(
+            "The 'unsubscribe' method must be implemented in subclass."
+        )
