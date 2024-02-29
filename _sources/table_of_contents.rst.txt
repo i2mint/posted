@@ -6,3 +6,5 @@
    module_docs/posted/base
    module_docs/posted/scrap
    module_docs/posted/scrap/reactive_dag
+   module_docs/posted/tests/common
+   module_docs/posted/tests/utils
