@@ -23,7 +23,6 @@ def gen_test_mk_msg_broker_args():
             yield (msg, queue)
 
 
-
 def base_test_on_demand_consumption(broker: MsgBrokerBase, message, channel):
     assert broker.read(channel) is NoMsg  # queue is empty
     broker.write(channel, message)
@@ -53,7 +52,7 @@ def base_test_reactive_consumption(broker: MsgBrokerBase, message, channel):
     broker.subscribe(channel, callback)
     wait()
     assert sub_msg.get(CONTENT) == message
-    
+
     # unsubscribe, write, and check
     sub_msg = {}
     broker.unsubscribe(channel)
