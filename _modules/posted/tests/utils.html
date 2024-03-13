@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>posted.tests.utils &mdash; posted 0.1.1 documentation</title>
+  <title>posted.tests.utils &mdash; posted 0.1.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../../../_static/documentation_options.js?v=92734c54"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -91,19 +91,21 @@
     <span class="k">if</span> <span class="n">run_in_background</span><span class="p">:</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd_args</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">process</span>
-    
+
     <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd_args</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span> <span class="k">else</span> <span class="kc">None</span>
 
 
 <span class="k">def</span> <span class="nf">service_is_running</span><span class="p">(</span><span class="n">service_container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="n">run_cmd</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;docker ps -q -f name=</span><span class="si">{</span><span class="n">service_container_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">run_cmd</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;docker ps -q -f name=</span><span class="si">{</span><span class="n">service_container_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="start_service">
 <a class="viewcode-back" href="../../../module_docs/posted/tests/utils.html#posted.tests.utils.start_service">[docs]</a>
-<span class="k">def</span> <span class="nf">start_service</span><span class="p">(</span><span class="n">service_container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">docker_compose_filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">start_service</span><span class="p">(</span>
+    <span class="n">service_container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">docker_compose_filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Start a docker service container.</span>
 
@@ -112,10 +114,12 @@
 <span class="sd">    :param wait: The time to wait after starting the container, in seconds.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;========================== Running container ==========================&quot;</span><span class="p">)</span>
-    <span class="n">run_cmd</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;docker-compose -f </span><span class="si">{</span><span class="n">docker_compose_filepath</span><span class="si">}</span><span class="s2"> -p </span><span class="si">{</span><span class="n">service_container_name</span><span class="si">}</span><span class="s2"> up -d&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;========================== Running container ==========================&#39;</span><span class="p">)</span>
+    <span class="n">run_cmd</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">&#39;docker-compose -f </span><span class="si">{</span><span class="n">docker_compose_filepath</span><span class="si">}</span><span class="s1"> -p </span><span class="si">{</span><span class="n">service_container_name</span><span class="si">}</span><span class="s1"> up -d&#39;</span>
+    <span class="p">)</span>
     <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;========================== Container running ==========================&quot;</span><span class="p">)</span></div>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;========================== Container running ==========================&#39;</span><span class="p">)</span></div>
 
 
 
@@ -129,9 +133,11 @@
 <span class="sd">    :param docker_compose_filepath: The path to the docker-compose file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;========================== Stopping container ==========================&quot;</span><span class="p">)</span>
-    <span class="n">run_cmd</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;docker-compose -f </span><span class="si">{</span><span class="n">docker_compose_filepath</span><span class="si">}</span><span class="s1"> -p </span><span class="si">{</span><span class="n">service_container_name</span><span class="si">}</span><span class="s1"> stop&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;========================== Container stopped ===========================&quot;</span><span class="p">)</span></div>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;========================== Stopping container ==========================&#39;</span><span class="p">)</span>
+    <span class="n">run_cmd</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">&#39;docker-compose -f </span><span class="si">{</span><span class="n">docker_compose_filepath</span><span class="si">}</span><span class="s1"> -p </span><span class="si">{</span><span class="n">service_container_name</span><span class="si">}</span><span class="s1"> stop&#39;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;========================== Container stopped ===========================&#39;</span><span class="p">)</span></div>
 
 </pre></div>
 
