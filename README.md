@@ -14,9 +14,10 @@ A scope that reacts to writes by computing associated functions, themselves writ
 
 Parameters
 ----------
-func_nodes : Iterable[ReactiveFuncNode]
+
+* `func_nodes : Iterable[ReactiveFuncNode]`
     The functions that will be called when the scope is written to.
-scope_factory : Callable[[], MutableMapping]
+* `scope_factory : Callable[[], MutableMapping]`
     A factory that returns a new scope. The scope will be cleared by calling this
     factory at each call to `.clear()`.
 
