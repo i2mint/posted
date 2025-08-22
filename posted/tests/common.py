@@ -2,13 +2,13 @@ from time import sleep
 from functools import partial
 from posted.base import MsgBrokerBase, NoMsg
 
-EXISTING_CHANNEL = 'existing-channel'
+EXISTING_CHANNEL = "existing-channel"
 
 MESSAGES = [
-    'some string',
+    "some string",
     123,
     3.14,
-    {'a': 1, 'b': 2, 'c': 3},
+    {"a": 1, "b": 2, "c": 3},
     None,
 ]
 CHANNEL_NAMES = [
@@ -31,7 +31,7 @@ def base_test_on_demand_consumption(broker: MsgBrokerBase, message, channel):
 
 
 def base_test_reactive_consumption(broker: MsgBrokerBase, message, channel):
-    CONTENT = 'content'
+    CONTENT = "content"
     sub_msg = {}
 
     wait = partial(sleep, 0.2)  # sleep for 200ms

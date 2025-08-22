@@ -1,7 +1,7 @@
 """
 Base module for the `posted` package.
 
-This module contains the base class for message brokers, 'MsgBrokerBase', which defines 
+This module contains the base class for message brokers, 'MsgBrokerBase', which defines
 the interface for message brokers.
 """
 
@@ -16,15 +16,15 @@ import concurrent.futures
 _mk_sentinel = partial(
     mk_sentinel, boolean_value=False, repr_=lambda x: x.__name__, module=__name__
 )
-NoMsg = _mk_sentinel('NoMsg')
+NoMsg = _mk_sentinel("NoMsg")
 
 
 def _dflt_encoder(v: Any) -> bytes:
-    return json.dumps(v).encode('utf-8')
+    return json.dumps(v).encode("utf-8")
 
 
 def _dflt_decoder(v: bytes) -> Any:
-    return json.loads(v.decode('utf-8'))
+    return json.loads(v.decode("utf-8"))
 
 
 class MsgBrokerBase(ABC):
@@ -51,7 +51,7 @@ class MsgBrokerBase(ABC):
             `json` module is used to dump messages to JSON.
         :param decoder: The decoder to use for decoding messages. By default, the
             `json` module is used to load messages from JSON.
-        :param kwargs: Additional configuration parameters, specific to the target 
+        :param kwargs: Additional configuration parameters, specific to the target
             infrastructure.
         """
         self._encoder = encoder or _dflt_encoder
@@ -64,7 +64,7 @@ class MsgBrokerBase(ABC):
     def write(self, channel: str, message: Any):
         """
         Write a message to the channel.
-        
+
         :param channel: The channel to write to.
         :param message: The message to write.
         """

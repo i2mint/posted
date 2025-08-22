@@ -3,7 +3,7 @@ from time import sleep
 
 
 def run_cmd(cmd: str, run_in_background: bool = False):
-    cmd_args = cmd.split(' ')
+    cmd_args = cmd.split(" ")
 
     if run_in_background:
         process = subprocess.Popen(cmd_args, stdout=subprocess.DEVNULL)
@@ -14,7 +14,7 @@ def run_cmd(cmd: str, run_in_background: bool = False):
 
 
 def service_is_running(service_container_name: str):
-    output = run_cmd(f'docker ps -q -f name={service_container_name}')
+    output = run_cmd(f"docker ps -q -f name={service_container_name}")
     return bool(output)
 
 
@@ -28,13 +28,13 @@ def start_service(
     :param docker_compose_filepath: The path to the docker-compose file.
     :param wait: The time to wait after starting the container, in seconds.
     """
-    print('\n')
-    print(f'========================== Running container ==========================')
+    print("\n")
+    print(f"========================== Running container ==========================")
     run_cmd(
-        f'docker-compose -f {docker_compose_filepath} -p {service_container_name} up -d'
+        f"docker-compose -f {docker_compose_filepath} -p {service_container_name} up -d"
     )
     sleep(wait)
-    print(f'========================== Container running ==========================')
+    print(f"========================== Container running ==========================")
 
 
 def stop_service(service_container_name: str, docker_compose_filepath: str):
@@ -44,9 +44,9 @@ def stop_service(service_container_name: str, docker_compose_filepath: str):
     :param service_container_name: The name of the service container.
     :param docker_compose_filepath: The path to the docker-compose file.
     """
-    print('\n')
-    print(f'========================== Stopping container ==========================')
+    print("\n")
+    print(f"========================== Stopping container ==========================")
     run_cmd(
-        f'docker-compose -f {docker_compose_filepath} -p {service_container_name} stop'
+        f"docker-compose -f {docker_compose_filepath} -p {service_container_name} stop"
     )
-    print(f'========================== Container stopped ===========================')
+    print(f"========================== Container stopped ===========================")
