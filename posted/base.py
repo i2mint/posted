@@ -13,7 +13,6 @@ from collections.abc import Callable, Mapping
 from i2.util import mk_sentinel
 import concurrent.futures
 
-
 _mk_sentinel = partial(
     mk_sentinel, boolean_value=False, repr_=lambda x: x.__name__, module=__name__
 )
