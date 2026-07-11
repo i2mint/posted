@@ -5,18 +5,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>posted.base &mdash; posted 0.1.4 documentation</title>
+  <title>posted.base &mdash; posted 0.1.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=fd825880"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/documentation_options.js?v=59fadc99"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../_static/copybutton.js?v=f281be69"></script>
@@ -82,14 +82,15 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Base module for the `posted` package.</span>
 
-<span class="sd">This module contains the base class for message brokers, &#39;MsgBrokerBase&#39;, which defines </span>
+<span class="sd">This module contains the base class for message brokers, &#39;MsgBrokerBase&#39;, which defines</span>
 <span class="sd">the interface for message brokers.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Mapping</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Mapping</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">i2.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_sentinel</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
 
@@ -97,15 +98,15 @@
 <span class="n">_mk_sentinel</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
     <span class="n">mk_sentinel</span><span class="p">,</span> <span class="n">boolean_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">repr_</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="vm">__name__</span>
 <span class="p">)</span>
-<span class="n">NoMsg</span> <span class="o">=</span> <span class="n">_mk_sentinel</span><span class="p">(</span><span class="s1">&#39;NoMsg&#39;</span><span class="p">)</span>
+<span class="n">NoMsg</span> <span class="o">=</span> <span class="n">_mk_sentinel</span><span class="p">(</span><span class="s2">&quot;NoMsg&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_dflt_encoder</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_dflt_decoder</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
 
 
 <div class="viewcode-block" id="MsgBrokerBase">
@@ -134,7 +135,7 @@
 <span class="sd">            `json` module is used to dump messages to JSON.</span>
 <span class="sd">        :param decoder: The decoder to use for decoding messages. By default, the</span>
 <span class="sd">            `json` module is used to load messages from JSON.</span>
-<span class="sd">        :param kwargs: Additional configuration parameters, specific to the target </span>
+<span class="sd">        :param kwargs: Additional configuration parameters, specific to the target</span>
 <span class="sd">            infrastructure.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_encoder</span> <span class="o">=</span> <span class="n">encoder</span> <span class="ow">or</span> <span class="n">_dflt_encoder</span>
@@ -149,7 +150,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Write a message to the channel.</span>
-<span class="sd">        </span>
+
 <span class="sd">        :param channel: The channel to write to.</span>
 <span class="sd">        :param message: The message to write.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -204,7 +205,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright NO COPYRIGHT.</p>
+    <p></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
