@@ -8,7 +8,8 @@ the interface for message brokers.
 from abc import ABC
 from functools import partial
 import json
-from typing import Any, Callable, Mapping
+from typing import Any
+from collections.abc import Callable, Mapping
 from i2.util import mk_sentinel
 import concurrent.futures
 
