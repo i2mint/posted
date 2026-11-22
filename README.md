@@ -8,123 +8,39 @@ To install:	```pip install posted```
 
 # Examples
 
-## ReactiveScope
+`posted` defines the interface that message-broker backends implement: `MsgBrokerBase`, with `write`, `read`, `subscribe` and `unsubscribe`, plus the `NoMsg` sentinel for "nothing to read". Messages go through an `encoder` and `decoder` (JSON bytes by default), and the base class keeps the `_subscriptions` dict and a thread-pool `_executor` for subclasses to use.
 
-A scope that reacts to writes by computing associated functions, themselves writing in the scope, creating a chain reaction that propagates information through the scope.
-
-Parameters
-----------
-
-* `func_nodes : Iterable[ReactiveFuncNode]`
-    The functions that will be called when the scope is written to.
-* `scope_factory : Callable[[], MutableMapping]`
-    A factory that returns a new scope. The scope will be cleared by calling this
-    factory at each call to `.clear()`.
-
-Examples
---------
-
-First, we need some func nodes to define the reaction relationships.
-We'll stuff these func nodes in a DAG, for ease of use, but it's not necessary.
+Here is a minimal in-memory implementation, to show what a subclass has to provide (a real backend talks to a broker; [redisposted](https://github.com/i2mint/redisposted) is the Redis one):
 
 ```python
->>> from meshed import FuncNode, DAG
+>>> from posted import MsgBrokerBase, NoMsg
 >>>
->>> def f(a, b):
-...     return a + b
->>> def g(a_plus_b, d):
-...     return a_plus_b * d
->>> f_node = FuncNode(func=f, out='a_plus_b')
->>> g_node = FuncNode(func=g, bind={'d': 'b'})
->>> d = DAG((f_node, g_node))
+>>> class InMemoryBroker(MsgBrokerBase):
+...     def __init__(self, **kwargs):
+...         super().__init__(**kwargs)
+...         self._channels = {}
+...     def write(self, channel, message):
+...         data = self._encoder(message)
+...         self._channels.setdefault(channel, []).append(data)
+...         if channel in self._subscriptions:
+...             self._subscriptions[channel](self._decoder(data))
+...     def read(self, channel):
+...         queue = self._channels.get(channel)
+...         return self._decoder(queue.pop(0)) if queue else NoMsg
+...     def subscribe(self, channel, callback):
+...         self._subscriptions[channel] = callback
+...     def unsubscribe(self, channel):
+...         self._subscriptions.pop(channel, None)
 >>>
->>> print(d.dot_digraph_ascii())
-<BLANKLINE>
-                a
-<BLANKLINE>
-            │
-            │
-            ▼
-            ┌────────┐
-    b   ──▶ │   f    │
-            └────────┘
-    │         │
-    │         │
-    │         ▼
-    │
-    │        a_plus_b
-    │
-    │         │
-    │         │
-    │         ▼
-    │       ┌────────┐
-    └─────▶ │   g_   │
-            └────────┘
-            │
-            │
-            ▼
-<BLANKLINE>
-                g
-<BLANKLINE>
-```
-
-Now we make a scope with these func nodes.
-
-```python
->>> s = ReactiveScope(d)
-```
-
-The scope starts empty (by default).
-
-```python
->>> s
-<ReactiveScope with .scope: {}>
-```
-
-So if we try to access any key, we'll get a KeyError.
-
-```python
->>> s['g']  # doctest: +IGNORE_EXCEPTION_DETAIL
-Traceback (most recent call last):
-    ...
-KeyError: 'g'
-```
-
-That's because we didn't put write anything in the scope yet.
-
-But, if you give ``g_`` enough data to be able to compute ``g`` (namely, if you
-write values of ``b`` and ``a_plus_b``), then ``g`` will automatically be computed.
-
-```python
->>> s['b'] = 3
->>> s['a_plus_b'] = 5
->>> s
-<ReactiveScope with .scope: {'b': 3, 'a_plus_b': 5, 'g': 15}>
-```
-
-So now we can access ``g``.
-
-```python
->>> s['g']
-15
-```
-
-Note though, that we first showed that ``g`` appeared in the scope before we
-explicitly asked for it. This was to show that ``g`` was computed as a
-side-effect of writing to the scope, not because we asked for it, triggering the
-computation
-
-Let's clear the scope and show that by specifying ``a`` and ``b``, we get all the
-other values of the network.
-
-```python
->>> s.clear()
->>> s
-<ReactiveScope with .scope: {}>
->>> s['a'] = 3
->>> s['b'] = 4
->>> s
-<ReactiveScope with .scope: {'a': 3, 'b': 4, 'a_plus_b': 7, 'g': 28}>
->>> s['g']  # (3 + 4) * 4 == 7 * 4 == 28
-28
+>>> broker = InMemoryBroker()
+>>> broker.write('greetings', {'hello': 'world'})
+>>> broker.read('greetings')
+{'hello': 'world'}
+>>> broker.read('greetings') is NoMsg
+True
+>>> received = []
+>>> broker.subscribe('news', received.append)
+>>> broker.write('news', [1, 2, 3])
+>>> received
+[[1, 2, 3]]
 ```
