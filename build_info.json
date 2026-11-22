@@ -1,34 +1,32 @@
 {
   "schema_version": 1,
-  "built_at": "2026-11-22T20:45:11Z",
+  "built_at": "2026-11-22T21:41:41Z",
   "package": {
     "name": "posted",
     "version": "0.1.7",
     "display_name": "posted",
-    "source": "setup.cfg"
+    "source": "pyproject.toml"
   },
   "git": {
     "available": true,
-    "commit": "b0331647951de635705cbddbfb99a1a82dc281f6",
-    "short_commit": "b033164",
+    "commit": "046b3eeb9d69be70c50d473be009090fcaf89bcd",
+    "short_commit": "046b3ee",
     "branch": "master",
-    "tags": [
-      "0.1.7"
-    ],
+    "tags": [],
     "dirty": false,
     "remote_url": "https://github.com/i2mint/posted",
-    "commit_url": "https://github.com/i2mint/posted/commit/b0331647951de635705cbddbfb99a1a82dc281f6",
+    "commit_url": "https://github.com/i2mint/posted/commit/046b3eeb9d69be70c50d473be009090fcaf89bcd",
     "error": null
   },
   "ci": {
     "provider": "github",
     "repository": "i2mint/posted",
-    "sha": "3ff690cbcef5794b914fe37c8d5f7542424f1da6",
+    "sha": "046b3eeb9d69be70c50d473be009090fcaf89bcd",
     "sha_in_history": true,
     "ref": "refs/heads/master",
     "ref_name": "master",
-    "run_id": "45068069156",
-    "run_url": "https://github.com/i2mint/posted/actions/runs/45068069156",
+    "run_id": "45073377680",
+    "run_url": "https://github.com/i2mint/posted/actions/runs/45073377680",
     "server_url": "https://github.com"
   },
   "tools": {
@@ -66,7 +64,7 @@
     "relation": "same",
     "error": null
   },
-  "reproduce": "git clone https://github.com/i2mint/posted && cd posted\ngit checkout b0331647951de635705cbddbfb99a1a82dc281f6\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/i2mint/posted && cd posted\ngit checkout 046b3eeb9d69be70c50d473be009090fcaf89bcd\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
     "aligned": true,

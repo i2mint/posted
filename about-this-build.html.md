@@ -2,7 +2,7 @@
 
 # About this build
 
-This documentation was built on **2026-11-22 20:45 UTC** from commit <a href="https://github.com/i2mint/posted/commit/b0331647951de635705cbddbfb99a1a82dc281f6"><code>b033164</code></a> on branch <code>master</code>, for **posted 0.1.7** (from <code>setup.cfg</code>).
+This documentation was built on **2026-11-22 21:41 UTC** from commit <a href="https://github.com/i2mint/posted/commit/046b3eeb9d69be70c50d473be009090fcaf89bcd"><code>046b3ee</code></a> on branch <code>master</code>, for **posted 0.1.7** (from <code>pyproject.toml</code>).
 
 #### NOTE
 Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
@@ -11,9 +11,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 |                     |                                                                                                                                                      |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/posted/commit/b0331647951de635705cbddbfb99a1a82dc281f6"><code>b0331647951de635705cbddbfb99a1a82dc281f6</code></a> |
+| Commit              | <a href="https://github.com/i2mint/posted/commit/046b3eeb9d69be70c50d473be009090fcaf89bcd"><code>046b3eeb9d69be70c50d473be009090fcaf89bcd</code></a> |
 | Branch              | <code>master</code>                                                                                                                                  |
-| Tags at this commit | <code>0.1.7</code>                                                                                                                                   |
+| Tags at this commit | none                                                                                                                                                 |
 | Working tree        | clean                                                                                                                                                |
 | Remote              | <code>https://github.com/i2mint/posted</code>                                                                                                        |
 
@@ -22,9 +22,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/posted</code>                                                                 |
-| Run          | <a href="https://github.com/i2mint/posted/actions/runs/45068069156">45068069156</a>        |
+| Run          | <a href="https://github.com/i2mint/posted/actions/runs/45073377680">45073377680</a>        |
 | Ref          | <code>refs/heads/master</code>                                                             |
-| Event commit | <code>3ff690cbcef5794b914fe37c8d5f7542424f1da6</code> (in the history of the built commit) |
+| Event commit | <code>046b3eeb9d69be70c50d473be009090fcaf89bcd</code> (in the history of the built commit) |
 
 ## Tools
 
@@ -55,7 +55,7 @@ Latest release: <a href="https://pypi.org/project/posted/0.1.7/">0.1.7</a>, the 
 
 ```bash
 git clone https://github.com/i2mint/posted && cd posted
-git checkout b0331647951de635705cbddbfb99a1a82dc281f6
+git checkout 046b3eeb9d69be70c50d473be009090fcaf89bcd
 pip install "epythet==0.2.23"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
