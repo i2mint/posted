@@ -1,4 +1,0 @@
-posted.tests.common
-===================
-.. automodule:: posted.tests.common
-   :members:

@@ -1,0 +1,12 @@
+posted.base
+===========
+
+.. automodule:: posted.base
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MsgBrokerBase
+   

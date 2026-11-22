@@ -1,4 +1,0 @@
-posted.scrap.reactive_dag
-=========================
-.. automodule:: posted.scrap.reactive_dag
-   :members:

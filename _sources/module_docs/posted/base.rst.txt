@@ -1,4 +1,0 @@
-posted.base
-===========
-.. automodule:: posted.base
-   :members:

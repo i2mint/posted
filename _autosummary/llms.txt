@@ -1,0 +1,13 @@
+# posted
+
+> Interfacing with message-broker functionality
+
+
+## Pages in this subsection
+
+- [posted](posted.html.md): Main module for the &#96;posted&#96; package.
+- [posted.base](posted.base.html.md): Base module for the &#96;posted&#96; package.
+
+## Optional
+
+- [Top-level llms.txt](../llms.txt): Complete documentation index.
