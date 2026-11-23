@@ -42,7 +42,7 @@ class MsgBrokerBase(ABC):
         *,
         encoder: Callable[[Any], bytes] = None,
         decoder: Callable[[bytes], Any] = None,
-        **kwargs
+        **kwargs,
     ):
         """
         Initialize the message broker.
