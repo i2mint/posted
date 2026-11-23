@@ -1,4 +1,4 @@
-> built 2026-11-22 21:41 UTC from 046b3ee (master) · posted 0.1.7. Details: build_info.json
+> built 2026-11-23 03:06 UTC from 2bd374c (master) · posted 0.1.7. Details: build_info.json
 
 # index.html.md
 
@@ -6,9 +6,11 @@
 
 # posted
 
-Interfacing with message-broker functionality
+Interfacing with message-broker functionality: one small interface (`MsgBrokerBase`) that broker backends implement, so code that writes and reads messages doesn’t care which broker is behind it.
 
-To install:	`pip install posted`
+```bash
+pip install posted
+```
 
 # Examples
 
@@ -124,16 +126,18 @@ Main module for the `posted` package.
 
 # About this build
 
-This documentation was built on **2026-11-22 21:41 UTC** from commit <a href="https://github.com/i2mint/posted/commit/046b3eeb9d69be70c50d473be009090fcaf89bcd"><code>046b3ee</code></a> on branch <code>master</code>, for **posted 0.1.7** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-23 03:06 UTC** from commit <a href="https://github.com/i2mint/posted/commit/2bd374cde8b5da646723aceb02d061fd6bc373fd"><code>2bd374c</code></a> on branch <code>master</code>, for **posted 0.1.7** (from <code>pyproject.toml</code>).
 
-#### NOTE
-Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
+#### WARNING
+The documentation and the package may be misaligned:
+
+- The documented version (0.1.7) is behind the latest release on PyPI (0.1.8): `pip install posted` gives newer code than these docs describe.
 
 ## Source
 
 |                     |                                                                                                                                                      |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/posted/commit/046b3eeb9d69be70c50d473be009090fcaf89bcd"><code>046b3eeb9d69be70c50d473be009090fcaf89bcd</code></a> |
+| Commit              | <a href="https://github.com/i2mint/posted/commit/2bd374cde8b5da646723aceb02d061fd6bc373fd"><code>2bd374cde8b5da646723aceb02d061fd6bc373fd</code></a> |
 | Branch              | <code>master</code>                                                                                                                                  |
 | Tags at this commit | none                                                                                                                                                 |
 | Working tree        | clean                                                                                                                                                |
@@ -144,9 +148,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/posted</code>                                                                 |
-| Run          | <a href="https://github.com/i2mint/posted/actions/runs/45073377680">45073377680</a>        |
+| Run          | <a href="https://github.com/i2mint/posted/actions/runs/45103800744">45103800744</a>        |
 | Ref          | <code>refs/heads/master</code>                                                             |
-| Event commit | <code>046b3eeb9d69be70c50d473be009090fcaf89bcd</code> (in the history of the built commit) |
+| Event commit | <code>2bd374cde8b5da646723aceb02d061fd6bc373fd</code> (in the history of the built commit) |
 
 ## Tools
 
@@ -171,13 +175,13 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/posted/0.1.7/">0.1.7</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/posted/0.1.8/">0.1.8</a>, newer than the documented version (0.1.7).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/posted && cd posted
-git checkout 046b3eeb9d69be70c50d473be009090fcaf89bcd
+git checkout 2bd374cde8b5da646723aceb02d061fd6bc373fd
 pip install "epythet==0.2.23"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```

@@ -5,11 +5,11 @@
 
 ## Pages
 
-- [posted](index.html.md): Interfacing with message-broker functionality
+- [posted](index.html.md): Interfacing with message-broker functionality: one small interface (&#96;MsgBrokerBase&#96;) that broker bac...
 - [API reference](api.html.md): | &#96;posted&#96;   | Main module for the &#96;posted&#96; package.   |
 - [posted](_autosummary/posted.html.md): Main module for the &#96;posted&#96; package.
 - [posted.base](_autosummary/posted.base.html.md): Base module for the &#96;posted&#96; package.
-- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-11-22 21:41 UTC&#42;&#42; from commit &lt;a href="https://github.com/i2m...
+- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-11-23 03:06 UTC&#42;&#42; from commit &lt;a href="https://github.com/i2m...
 
 ## Optional
 

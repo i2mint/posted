@@ -2,9 +2,11 @@
 
 # posted
 
-Interfacing with message-broker functionality
+Interfacing with message-broker functionality: one small interface (`MsgBrokerBase`) that broker backends implement, so code that writes and reads messages doesn’t care which broker is behind it.
 
-To install:	`pip install posted`
+```bash
+pip install posted
+```
 
 # Examples
 

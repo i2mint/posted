@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "built_at": "2026-11-22T21:41:41Z",
+  "built_at": "2026-11-23T03:06:08Z",
   "package": {
     "name": "posted",
     "version": "0.1.7",
@@ -9,24 +9,24 @@
   },
   "git": {
     "available": true,
-    "commit": "046b3eeb9d69be70c50d473be009090fcaf89bcd",
-    "short_commit": "046b3ee",
+    "commit": "2bd374cde8b5da646723aceb02d061fd6bc373fd",
+    "short_commit": "2bd374c",
     "branch": "master",
     "tags": [],
     "dirty": false,
     "remote_url": "https://github.com/i2mint/posted",
-    "commit_url": "https://github.com/i2mint/posted/commit/046b3eeb9d69be70c50d473be009090fcaf89bcd",
+    "commit_url": "https://github.com/i2mint/posted/commit/2bd374cde8b5da646723aceb02d061fd6bc373fd",
     "error": null
   },
   "ci": {
     "provider": "github",
     "repository": "i2mint/posted",
-    "sha": "046b3eeb9d69be70c50d473be009090fcaf89bcd",
+    "sha": "2bd374cde8b5da646723aceb02d061fd6bc373fd",
     "sha_in_history": true,
     "ref": "refs/heads/master",
     "ref_name": "master",
-    "run_id": "45073377680",
-    "run_url": "https://github.com/i2mint/posted/actions/runs/45073377680",
+    "run_id": "45103800744",
+    "run_url": "https://github.com/i2mint/posted/actions/runs/45103800744",
     "server_url": "https://github.com"
   },
   "tools": {
@@ -60,14 +60,16 @@
   },
   "pypi": {
     "checked": true,
-    "latest": "0.1.7",
-    "relation": "same",
+    "latest": "0.1.8",
+    "relation": "behind",
     "error": null
   },
-  "reproduce": "git clone https://github.com/i2mint/posted && cd posted\ngit checkout 046b3eeb9d69be70c50d473be009090fcaf89bcd\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/i2mint/posted && cd posted\ngit checkout 2bd374cde8b5da646723aceb02d061fd6bc373fd\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
-    "aligned": true,
-    "notes": []
+    "aligned": false,
+    "notes": [
+      "The documented version (0.1.7) is behind the latest release on PyPI (0.1.8): `pip install posted` gives newer code than these docs describe."
+    ]
   }
 }
