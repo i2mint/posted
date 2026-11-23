@@ -24,7 +24,7 @@ The documentation and the package may be misaligned:
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/posted</code>                                                                 |
-| Run          | <a href="https://github.com/i2mint/posted/actions/runs/45103800744">45103800744</a>        |
+| Run          | <a href="https://github.com/i2mint/posted/actions/runs/45103803995">45103803995</a>        |
 | Ref          | <code>refs/heads/master</code>                                                             |
 | Event commit | <code>2bd374cde8b5da646723aceb02d061fd6bc373fd</code> (in the history of the built commit) |
 

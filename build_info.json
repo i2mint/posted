@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "built_at": "2026-11-23T03:06:08Z",
+  "built_at": "2026-11-23T03:06:29Z",
   "package": {
     "name": "posted",
     "version": "0.1.7",
@@ -25,8 +25,8 @@
     "sha_in_history": true,
     "ref": "refs/heads/master",
     "ref_name": "master",
-    "run_id": "45103800744",
-    "run_url": "https://github.com/i2mint/posted/actions/runs/45103800744",
+    "run_id": "45103803995",
+    "run_url": "https://github.com/i2mint/posted/actions/runs/45103803995",
     "server_url": "https://github.com"
   },
   "tools": {
